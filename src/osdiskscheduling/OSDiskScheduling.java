@@ -14,12 +14,25 @@ import java.util.Scanner;
 
 public class OSDiskScheduling {
     
-    static void bubbleSort(ArrayList<Integer> x) {  
+    static void aBubbleSort(ArrayList<Integer> x) {  
         int n = x.size();  
         int temp = 0;  
          for(int i=0; i < n; i++){  
                  for(int j=1; j < (n-i); j++){  
                           if(x.get(j-1) > x.get(j)){  
+                                 //swap elements  
+                                 temp = x.get(j-1);  
+                                 x.set(j-1,x.get(j));  
+                                 x.set(j,temp);  
+                         }  
+                          
+                 }}} 
+    static void decBubbleSort(ArrayList<Integer> x) {  
+        int n = x.size();  
+        int temp = 0;  
+         for(int i=0; i < n; i++){  
+                 for(int j=1; j < (n-i); j++){  
+                          if(x.get(j-1) < x.get(j)){  
                                  //swap elements  
                                  temp = x.get(j-1);  
                                  x.set(j-1,x.get(j));  
@@ -52,36 +65,87 @@ for(int i=0;i<x.size();i++){
 }
 
 
-public static void SCAN (ArrayList<Integer> x,int head){
-    bubbleSort(x);
+public static void SCAN (ArrayList<Integer> x,int head,int direction,int boundries){
+    aBubbleSort(x);
 int seek_time=0;
 int distance;
 int curr_track=head;
  ArrayList <Integer> scanUp=new ArrayList<Integer>();
-  ArrayList <Integer> scanDown=new ArrayList<Integer>();;
+  ArrayList <Integer> scanDown=new ArrayList<Integer>();
   
-for(int i=0;i<x.size();i++){
-    if(curr_track<=x.get(i))
+  if(direction==1)
+  {
+       System.out.println("Direction : Right");
+  for(int i=0;i<x.size();i++){
+    if(curr_track<x.get(i))
     {
-    curr_track=x.get(i);
-    distance=Math.abs(curr_track-head);
-    seek_time+= distance;
-    head=curr_track;
-    scanUp.add(curr_track);
+    
+        scanUp.add(curr_track);
+        curr_track=x.get(i);
 }
-   
+    else
+    {
+        scanDown.add(x.get(i));
+       
+    }
+  }
+  scanUp.add(boundries-1);
 
-
-}
-
- System.out.println("Total number of seek operations = " +  
+ seek_time=((boundries-1)-head)+((boundries-1)-x.get(0));
+  System.out.println("Total number of seek operations = " +  
                         seek_time); 
   System.out.println("Seek Sequence is"); 
   
-    for (int j = 0; j < scanUp.size(); j++) 
+    for (int j = 1; j < scanUp.size(); j++) 
     { 
         System.out.println(scanUp.get(j)); 
     } 
+    decBubbleSort(scanDown);
+     for (int k = 0; k < scanDown.size(); k++) 
+    { 
+        System.out.println(scanDown.get(k)); 
+    }
+    
+  }
+  else if(direction==0)
+  {
+      System.out.println("Direction : Left");
+      scanDown.add(0);
+  for(int i=0;i<x.size();i++){
+    if(curr_track<x.get(i))
+    {
+    
+        scanUp.add(curr_track);
+        curr_track=x.get(i);
+}
+    else
+    {
+        scanDown.add(x.get(i));
+       
+    }
+  }
+  
+  seek_time=head+x.get((x.size()-1));
+  System.out.println("Total number of seek operations = " +  
+                        seek_time); 
+  System.out.println("Seek Sequence is"); 
+  
+   decBubbleSort(scanDown);
+     for (int k = 0; k < scanDown.size(); k++) 
+    { 
+        System.out.println(scanDown.get(k)); 
+    }
+  
+    for (int j = 1; j < scanUp.size(); j++) 
+    { 
+        System.out.println(scanUp.get(j)); 
+    } 
+   
+  
+  
+  }
+  
+  
 }
 
 
@@ -125,7 +189,20 @@ for(int i=0;i<x.size();i++){
              case 1:
                  FCFS(Disks,head);
              case 2:
-                 SCAN(Disks,head);
+                 System.out.println("for Right direction press 1 and for Left direction press 0");
+                  int direct= sc.nextInt();
+                  
+                  System.out.println("Enter your boundry");
+                  int boundry=sc.nextInt();
+                  
+                switch(direct){
+             case 0:
+                SCAN(Disks,head,direct,boundry);
+             case 1:
+                SCAN(Disks,head,direct,boundry);
+                 
+         } 
+                 
          }
         
                 
