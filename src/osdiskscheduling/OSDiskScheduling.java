@@ -17,32 +17,50 @@ public class OSDiskScheduling {
      
 
     public static void main(String[] args) throws FileNotFoundException {
-        File f=new File("C:\\\\Users\\\\G3bour Store\\\\Desktop\\\\os2File");
-        Scanner fsc=new Scanner(f);
-     
         Scanner sc=new Scanner(System.in);
         
-        
-        ArrayList <Integer> Disks=new ArrayList<Integer>();
-        
-        System.out.println("How many disks you want to schedule");
-        int numberOfDisks= sc.nextInt();
-        System.out.println("Please enter disks");
-        // switch case
-        for(int i=0;i<numberOfDisks;i++)
-       {
-           Disks.add(fsc.nextInt());
        
-       }
-        
-        
+               System.out.println("How many disks you want to schedule");
+                 int numberOfDisks=sc.nextInt();
+                
+               
+               
+           while(numberOfDisks<1||numberOfDisks>2){
+               System.out.println("invalid input, enter again");
+               numberOfDisks=sc.nextInt();
+           }
+         System.out.println("to input from files enter 1, for console press 2");
+            int FoC=sc.nextInt();
+            ArrayList <Integer> Disks=new ArrayList<Integer>();
+      
        
-/*        for(int i=0;i<numberOfDisks;i++){
+           switch(FoC){
+               case 1:
+                   
+                   break;
+               case 2:
+                     System.out.println("Please enter disks");
+                      for(int i=0;i<numberOfDisks;i++){
             
             Disks.add(sc.nextInt());
             
         }
-*/
+                      break;
+               default:
+                   System.out.println("No valid choice entered so manual is selected ");
+                  System.out.println("Please enter disks");
+                      for(int i=0;i<numberOfDisks;i++){
+            
+            Disks.add(sc.nextInt());
+            
+        }
+                     
+        
+        
+    }
+       
+     
+
         
        
         
