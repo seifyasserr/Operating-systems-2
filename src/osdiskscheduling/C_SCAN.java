@@ -4,20 +4,19 @@
  * and open the template in the editor.
  */
 package osdiskscheduling;
-
+import static java.lang.Math.abs;
 import java.util.ArrayList;
-
 /**
  *
  * @author Kareem Elantably
  */
-public class SCAN {
-    
-    private  int seek_time;
+public class C_SCAN {
+     private  int seek_time;
     private int distance;
     private int curr_track;
     SORTS sortObj=new SORTS();
-    public SCAN()
+
+ public C_SCAN()
     {
       
       int seek_time=0;
@@ -52,7 +51,7 @@ public class SCAN {
     
          
    
-public void scan (ArrayList<Integer> x,int head,int direction,int boundries){
+public void cScan (ArrayList<Integer> x,int head,int direction,int boundries){
     sortObj.aBubbleSort(x);
 
 int curr_track=head;
@@ -79,7 +78,8 @@ int curr_track=head;
   }
   scanRight.add(boundries-1);
 
- seek_time=head+x.get((x.size()-1));
+ seek_time=(abs((0)-scanLeft.get(scanLeft.size()-1))+abs(head-(boundries-1))+(boundries-1));
+      
   System.out.println("Total number of seek operations = " +  
                         seek_time); 
   System.out.println("Requests Sequence is"); 
@@ -88,7 +88,8 @@ int curr_track=head;
     { 
         System.out.println(scanRight.get(j)); 
     } 
-    sortObj.decBubbleSort(scanLeft);
+    //sortObj.decBubbleSort(scanLeft);
+      System.out.println("0");
      for (int k = 0; k < scanLeft.size(); k++) 
     { 
         System.out.println(scanLeft.get(k)); 
@@ -112,8 +113,9 @@ int curr_track=head;
        
     }
   }
-  seek_time=((boundries-1)-head)+((boundries-1)-x.get(0));
-  
+  scanRight.add(boundries-1);
+  seek_time=abs(abs((0)-head)+abs(scanRight.get(0)-(boundries-1))+(boundries-1));
+  //System.out.println("(0-"+scanLeft.get(scanLeft.size()-1)+")+("+head+"-199)");
   System.out.println("Total number of seek operations = " +  
                         seek_time); 
   System.out.println("Requests Sequence is"); 
@@ -124,19 +126,17 @@ int curr_track=head;
         System.out.println(scanLeft.get(k));
         
     }
-  
+  sortObj.decBubbleSort(scanRight);
     for (int j = 0; j < scanRight.size(); j++) 
     { 
         System.out.println(scanRight.get(j)); 
     } 
-   
+    
   
   
   }
   
   
 }
-    
-    
-    
+
 }
