@@ -59,6 +59,8 @@ int curr_track=head;
   ArrayList <Integer> scanRight=new ArrayList<Integer>();
   ArrayList <Integer> scanLeft=new ArrayList<Integer>();
   
+  if(boundries<x.get(x.size()-1))
+        System.out.println("");
   if(direction==1)
   {
        System.out.println("Direction : Right");
@@ -77,10 +79,10 @@ int curr_track=head;
   }
   scanRight.add(boundries-1);
 
- seek_time=((boundries-1)-head)+((boundries-1)-x.get(0));
+ seek_time=head+x.get((x.size()-1));
   System.out.println("Total number of seek operations = " +  
                         seek_time); 
-  System.out.println("Seek Sequence is"); 
+  System.out.println("Requests Sequence is"); 
   
     for (int j = 0; j < scanRight.size(); j++) 
     { 
@@ -110,11 +112,11 @@ int curr_track=head;
        
     }
   }
+  seek_time=((boundries-1)-head)+((boundries-1)-x.get(0));
   
-  seek_time=head+x.get((x.size()-1));
   System.out.println("Total number of seek operations = " +  
                         seek_time); 
-  System.out.println("Seek Sequence is"); 
+  System.out.println("Requests Sequence is"); 
   
    sortObj.decBubbleSort(scanLeft);
      for (int k = 0; k < scanLeft.size(); k++) 
