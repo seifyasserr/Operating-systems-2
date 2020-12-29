@@ -46,10 +46,11 @@ curr_track=0;
         this.curr_track = curr_track;
     }
     
-    public void FCFS (ArrayList<Integer> x,int head){
+    public void fcfs (ArrayList<Integer> x,int head){
 
 
 for(int i=0;i<x.size();i++){
+    
     curr_track=x.get(i);
     distance=Math.abs(curr_track-head);
     seek_time+= distance;
@@ -58,7 +59,7 @@ for(int i=0;i<x.size();i++){
 
  System.out.println("Total number of seek operations = " +  
                         seek_time); 
-  System.out.println("Seek Sequence is"); 
+  System.out.println("Requests Sequence is"); 
   
     for (int i = 0; i < x.size(); i++) 
     { 
