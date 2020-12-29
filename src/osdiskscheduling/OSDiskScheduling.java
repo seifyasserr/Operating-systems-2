@@ -8,11 +8,12 @@ package osdiskscheduling;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
+import static java.lang.System.exit;
 
 
 public class OSDiskScheduling {
     
-     
+    
 
     public static void main(String[] args) throws FileNotFoundException {
         Scanner sc=new Scanner(System.in);
@@ -29,7 +30,7 @@ public class OSDiskScheduling {
                FoC=sc.nextInt();
            }
             ArrayList <Integer> Disks=new ArrayList<Integer>();
-      
+            int []DiskS=new int[numberOfDisks];
        
            switch(FoC){
                case 1:
@@ -51,19 +52,24 @@ public class OSDiskScheduling {
                case 2:
                      System.out.println("Please enter the requests");
                       for(int i=0;i<numberOfDisks;i++){
-            
-            Disks.add(sc.nextInt());
-            
+            int value =sc.nextInt();
+            Disks.add(value);
+            DiskS[i]=value;
         }
+                      SORTS a=new SORTS();
+                      a.aBubbleSort(Disks);
                       break;
                default:
                    System.out.println("No valid choice entered so manual is selected ");
                   System.out.println("Please enter the requests");
                       for(int i=0;i<numberOfDisks;i++){
-            
-            Disks.add(sc.nextInt());
-            
+          int value =sc.nextInt();
+            Disks.add(value);
+            DiskS[i]=value;
         }
+                      SORTS b=new SORTS();
+                      b.aBubbleSort(Disks);                     
+                      
                       
     }
                
@@ -78,9 +84,11 @@ public class OSDiskScheduling {
          
            System.out.println("Enter your boundry");
                   int boundry=sc.nextInt();
-                  if(boundry<Disks.get(Disks.size()-1))
-        System.out.println("the value of the boundry is less than the largest value in the requests");
                   
+                  if(boundry<Disks.get(Disks.size()-1)){
+        System.out.println("the value of the boundry is less than the largest value in the requests");
+        exit(0);
+                  }
          
          System.out.println("for FCFS press 1 ");
          System.out.println("for SSTF press 2");
@@ -104,7 +112,7 @@ public class OSDiskScheduling {
              case 2:
                  
                  SSTF obj2=new SSTF();
-                 obj2.sstf(Disks, head);
+                 obj2.shortestSeekTimeFirst(DiskS, head);
                  break;
              case 3:
                   System.out.println("for Right direction press 1 and for Left direction press 0");

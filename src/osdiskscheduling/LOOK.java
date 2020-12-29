@@ -48,7 +48,7 @@ public class LOOK {
         this.curr_track = curr_track;
     }
     
-    
+   
          
    
 public void look (ArrayList<Integer> x,int head,int direction,int boundries){
